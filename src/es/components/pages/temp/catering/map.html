@@ -1,0 +1,276 @@
+<style>
+    html{
+        min-height: unset;
+            height: unset;
+        overflow: hidden;
+    }
+</style>
+
+
+<!DOCTYPE html>
+<html class="js ufhuvn hmjvipr" lang="de" data-setup="{}" subdomain="catering">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script type="text/javascript">
+        var dataLayer = dataLayer || [];
+    </script>
+    <meta http-equiv="content-language" content="de">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="widgetEnvironment" content="test">
+    <meta property="og:site_name" content="test-auth.migros.ch">
+    <meta name="apple-itunes-app" content="app-id=412845300">
+    <title itemprop="name"></title>
+    <script defer="" src="../assets/jquery.js" type="text/javascript"></script>
+    <script defer="" src="../assets/jquery-migrate.min.js" type="text/javascript"></script>
+    <script defer="" src="../assets/exoskeleton.js" type="text/javascript"></script>
+    <script defer="" src="../assets/lazysizes.js" type="text/javascript"></script>
+    <script defer="" src="../assets/immediate.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/styles.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../assets/components.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../assets/print.css" media="print">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="robots" content="all">
+</head>
+
+<body data-bootstrap-activemediaquery="lg">
+    <main>
+        <div class="container-fluid">
+            <div class="row" style="margin:0;">
+                <div style="padding:0;" class="col-xs-12 col-ms-12 col-sm-12 col-md-12 col-lg-12">
+                    <h2 class="ui-paragraph-headline is-highlight"></h2>
+                </div>
+            </div>
+            <div class="row" style="margin:0;">
+                <div style="padding:0;" class="col-xs-12 col-ms-12 col-sm-12 col-md-8 col-lg-6">
+                    <p class="map-intro" style="font-weight: bold;"></p>
+                </div>
+            </div>
+
+
+
+
+
+            <!-- Input Search + Output Location/State -->
+            <div class="ui-c204-12-map">
+                <div id="cooperative-input" class="row ui-f607-12-forms ui-js-form ui-js-form-logic"
+                    style="margin: 0; height: 0; overflow: visible;">
+                    <form>
+                        <div class="form-group">
+                            <div class="search-container col-xs-12" style="padding:0; width: 100%; max-width: 312px;">
+                                <label for="ref-address" class="sr-only"></label>
+                                <input type="text" aria-live="polite" aria-controls="ui-autocomplete-ref-address"
+                                    class="form-control search-question js-association-search-input" id="ref-address"
+                                    name="ref-address" placeholder="PLZ oder Ort eingeben" autocomplete="off" 
+                                    error-message="Bitte gib eine gültige PLZ oder einen gültigen Ort ein.">
+                                <button class="button-reset" type="reset">
+                                    <span class="sr-only"></span>
+                                </button>
+                                <button class="button-search" type="button">
+                                    <span class="sr-only"></span>
+                                </button>
+                                <div class="ui-results-autocomplete ui-js-results-autocomplete"
+                                    id="ui-autocomplete-ref-address">
+                                    <div class="autocomplete-suggestions"
+                                        style="position: absolute; display: none; max-height: 300px; z-index: 9999; width: 312px;">
+                                        <div class="autocomplete-suggestion" data-index="0">1144
+                                            <strong>B</strong>allens</div>
+                                    </div>
+                                </div>
+                                <style>
+                                    input.search-question,
+                                    input.search-question:focus,
+                                    input.search-question:focus-visible {
+                                        width: 100%;
+                                        padding: 10px 90px 10px 15px;
+                                        font-size: 1.6rem;
+                                        line-height: 2.4rem;
+                                        font-family: "Helvetica Now Text";
+                                        font-weight: 400;
+                                        min-height: 48px;
+                                        background-color: rgba(0, 0, 0, 0);
+                                        box-shadow: none;
+                                        border: 2px #e7e5e3 solid;
+                                        border-radius: 4px;
+                                        text-overflow: ellipsis !important;
+                                        height: auto;
+                                        margin: 0;
+                                        position: relative;
+                                        display: inline-block;
+                                        color: #333;
+                                        transition: background-color .8s;
+                                        box-sizing: border-box;
+                                        -webkit-appearance: none !important;
+                                        -moz-appearance: none !important;
+                                        appearance: none !important;
+                                        outline: none;
+                                    }
+
+                                    button.button-reset {
+                                        position: absolute;
+                                        top: 0;
+                                        right: 41px;
+                                        width: 42px;
+                                        height: 48px;
+                                        border: 0;
+                                        background-color: rgba(0, 0, 0, 0);
+                                        background-image: url(../img/svg/icons/map/reset_circle_x.svg);
+                                        background-position: center center;
+                                        background-repeat: no-repeat;
+                                        background-size: 24px 24px;
+                                        opacity: 0;
+                                        outline: 0;
+                                        transition: opacity .3s ease-in-out, visibility 0s .3s;
+                                        visibility: hidden;
+                                    }
+
+                                    button.button-search {
+                                        position: absolute;
+                                        top: 0;
+                                        right: 5px;
+                                        width: 42px;
+                                        height: 48px;
+                                        border: 0;
+                                        background-color: rgba(0, 0, 0, 0);
+                                        background-image: url(../img/svg/icons/map/submit_search_arrow.svg);
+                                        background-position: center center;
+                                        background-repeat: no-repeat;
+                                        background-size: 16px 32px;
+                                        outline: 0;
+                                    }
+                                </style>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="cooperative-display" class="ui-js-output-search ui-output-search is-hidden">
+                    <div class="ui-output-search-item">
+                        <button id="enter-form-button" class="ui-output-plz" type="button">
+                            PLZ <span class="ui-js-output-plz">8000</span>
+                        </button>
+                    </div>
+                    <div class="ui-output-search-item">
+                        <a class="ui-js-output-state ui-output-state" target="_parent" href="/de/genossenschaften/zuerich.html">
+                            Migros Zürich
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.js"></script>
+            <script src="../assets/gastro.js" defer></script>
+
+            <div style="margin-bottom: 2em;"></div>
+
+
+            <div class="ui-c204-12-map ui-js-association-map ui-js-association-map-marker is-inverted">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="image-animation">
+                            <div class="map js-association-map">
+                                <object type="image/svg+xml" class="js-association-map-svg img-responsive"
+                                    data="../assets/MGB_RB_Broschuere_karte.svg"></object>
+                                <span class="map-marker ui-js-popover js-map-popover" data-map-area="aa"
+                                    data-area-url="/author/gastro/de/genossenschaften/aare.html" data-toggle="popover"
+                                    data-setup="{&quot;documentClose&quot;: true, &quot;popoverClasses&quot;: &quot;is-map&quot;}"
+                                    data-trigger="manual" data-placement="top"
+                                    data-content="&lt;h2 class=&quot;title&quot;&gt;Migros Aare&lt;/h2&gt;&lt;span class=&quot;text&quot;&gt;&lt;span&gt;Hier findest du den Menüplan der Woche, Migros-Take-Away-Angebote, Catering Services und vieles mehr.&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;link-wrapper&quot;&gt;&lt;a target=&quot;_parent&quot; href=&quot;/author/gastro/de/genossenschaften/aare.html&quot; class=&quot;link&quot;&gt;zur Genossenschaft&lt;/a&gt;&lt;/div&gt;"
+                                    style="top: 36%; left: 35%;" data-original-title="" title="">
+                                    <span class="map-marker-abbreviation" data-abbreviation="A">A</span>
+                                </span>
+                                <span class="map-marker ui-js-popover js-map-popover" data-map-area="bs"
+                                    data-area-url="/author/gastro/de/genossenschaften/basel.html" data-toggle="popover"
+                                    data-setup="{&quot;documentClose&quot;: true, &quot;popoverClasses&quot;: &quot;is-map&quot;}"
+                                    data-trigger="manual" data-placement="top"
+                                    data-content="&lt;h2 class=&quot;title&quot;&gt;Migros Basel&lt;/h2&gt;&lt;span class=&quot;text&quot;&gt;&lt;span&gt;Hier findest du den Menüplan der Woche, Migros-Take-Away-Angebote, Catering Services und vieles mehr.&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;link-wrapper&quot;&gt;&lt;a target=&quot;_parent&quot; href=&quot;/author/gastro/de/genossenschaften/basel.html&quot; class=&quot;link&quot;&gt;zur Genossenschaft&lt;/a&gt;&lt;/div&gt;"
+                                    style="top: 8%; left: 33%;" data-original-title="" title="">
+                                    <span class="map-marker-abbreviation" data-abbreviation="B">B</span>
+                                </span>
+                                <span class="map-marker ui-js-popover js-map-popover" data-map-area="ge"
+                                    data-area-url="/author/gastro/fr/cooperatives/geneve.html" data-toggle="popover"
+                                    data-setup="{&quot;documentClose&quot;: true, &quot;popoverClasses&quot;: &quot;is-map&quot;}"
+                                    data-trigger="manual" data-placement="top"
+                                    data-content="&lt;h2 class=&quot;title&quot;&gt;Migros Genf&lt;/h2&gt;&lt;span class=&quot;text&quot;&gt;&lt;span&gt;Hier findest du den Menüplan der Woche, Migros-Take-Away-Angebote, Catering Services und vieles mehr (französisch).&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;link-wrapper&quot;&gt;&lt;a target=&quot;_parent&quot; href=&quot;/author/gastro/fr/cooperatives/geneve.html&quot; class=&quot;link&quot;&gt;zur Genossenschaft&lt;/a&gt;&lt;/div&gt;"
+                                    style="top: 63%; left: 2%;" data-original-title="" title="">
+                                    <span class="map-marker-abbreviation" data-abbreviation="G">G</span>
+                                </span>
+                                <span class="map-marker ui-js-popover js-map-popover" data-map-area="lu"
+                                    data-area-url="/author/gastro/de/genossenschaften/luzern.html" data-toggle="popover"
+                                    data-setup="{&quot;documentClose&quot;: true, &quot;popoverClasses&quot;: &quot;is-map&quot;}"
+                                    data-trigger="manual" data-placement="top"
+                                    data-content="&lt;h2 class=&quot;title&quot;&gt;Migros Luzern&lt;/h2&gt;&lt;span class=&quot;text&quot;&gt;&lt;span&gt;Hier findest du den Menüplan der Woche, Migros-Take-Away-Angebote, Catering Services und vieles mehr.&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;link-wrapper&quot;&gt;&lt;a target=&quot;_parent&quot; href=&quot;/author/gastro/de/genossenschaften/luzern.html&quot; class=&quot;link&quot;&gt;zur Genossenschaft&lt;/a&gt;&lt;/div&gt;"
+                                    style="top: 31%; left: 53%;" data-original-title="" title="">
+                                    <span class="map-marker-abbreviation" data-abbreviation="L">L</span>
+                                </span>
+                                <span class="map-marker ui-js-popover js-map-popover" data-map-area="nf"
+                                    data-area-url="/author/gastro/fr/cooperatives/neuchatel-fribourg.html"
+                                    data-toggle="popover"
+                                    data-setup="{&quot;documentClose&quot;: true, &quot;popoverClasses&quot;: &quot;is-map&quot;}"
+                                    data-trigger="manual" data-placement="top"
+                                    data-content="&lt;h2 class=&quot;title&quot;&gt;Migros Neuenburg-Freiburg&lt;/h2&gt;&lt;span class=&quot;text&quot;&gt;&lt;span&gt;Hier findest du den Menüplan der Woche, Migros-Take-Away-Angebote, Catering Services und vieles mehr (französisch).&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;link-wrapper&quot;&gt;&lt;a target=&quot;_parent&quot; href=&quot;/author/gastro/fr/cooperatives/neuchatel-fribourg.html&quot; class=&quot;link&quot;&gt;zur Genossenschaft&lt;/a&gt;&lt;/div&gt;"
+                                    style="top: 23%; left: 21%;" data-original-title="" title="">
+                                    <span class="map-marker-abbreviation" data-abbreviation="N-F">N-F</span>
+                                </span>
+                                <span class="map-marker ui-js-popover js-map-popover" data-map-area="os"
+                                    data-area-url="/author/gastro/de/genossenschaften/ostschweiz.html"
+                                    data-toggle="popover"
+                                    data-setup="{&quot;documentClose&quot;: true, &quot;popoverClasses&quot;: &quot;is-map&quot;}"
+                                    data-trigger="manual" data-placement="top"
+                                    data-content="&lt;h2 class=&quot;title&quot;&gt;Migros Ostschweiz&lt;/h2&gt;&lt;span class=&quot;text&quot;&gt;&lt;span&gt;Hier findest du den Menüplan der Woche, Migros-Take-Away-Angebote, Catering Services und vieles mehr.&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;link-wrapper&quot;&gt;&lt;a target=&quot;_parent&quot; href=&quot;/author/gastro/de/genossenschaften/ostschweiz.html&quot; class=&quot;link&quot;&gt;zur Genossenschaft&lt;/a&gt;&lt;/div&gt;"
+                                    style="top: 48%; left: 78%;" data-original-title="" title="">
+                                    <span class="map-marker-abbreviation" data-abbreviation="O">O</span>
+                                </span>
+                                <span class="map-marker ui-js-popover js-map-popover" data-map-area="ti"
+                                    data-area-url="https://www.migrosticino.ch/ristorante-take-away/"
+                                    data-toggle="popover"
+                                    data-setup="{&quot;documentClose&quot;: true, &quot;popoverClasses&quot;: &quot;is-map&quot;}"
+                                    data-trigger="manual" data-placement="top"
+                                    data-content="&lt;h2 class=&quot;title&quot;&gt;Migros Tessin&lt;/h2&gt;&lt;span class=&quot;text&quot;&gt;&lt;span&gt;Hier findest du den Menüplan der Woche, Migros-Take-Away-Angebote, Catering Services und vieles mehr (italienisch).&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;link-wrapper&quot;&gt;&lt;a href=&quot;https://www.migrosticino.ch/ristorante-take-away/&quot; class=&quot;link&quot; target=&quot;_bank&quot;&gt;zur Genossenschaft&lt;/a&gt;&lt;/div&gt;"
+                                    style="top: 64%; left: 61%;" data-original-title="" title="">
+                                    <span class="map-marker-abbreviation" data-abbreviation="T">T</span>
+                                </span>
+                                <span class="map-marker ui-js-popover js-map-popover" data-map-area="vd"
+                                    data-area-url="/author/gastro/fr/cooperatives/vaud.html" data-toggle="popover"
+                                    data-setup="{&quot;documentClose&quot;: true, &quot;popoverClasses&quot;: &quot;is-map&quot;}"
+                                    data-trigger="manual" data-placement="top"
+                                    data-content="&lt;h2 class=&quot;title&quot;&gt;Migros Waadt&lt;/h2&gt;&lt;span class=&quot;text&quot;&gt;&lt;span&gt;Hier findest du den Menüplan der Woche, Migros-Take-Away-Angebote, Catering Services und vieles mehr (französisch).&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;link-wrapper&quot;&gt;&lt;a target=&quot;_parent&quot; href=&quot;/author/gastro/fr/cooperatives/vaud.html&quot; class=&quot;link&quot;&gt;zur Genossenschaft&lt;/a&gt;&lt;/div&gt;"
+                                    style="top: 45%; left: 11%;" data-original-title="" title="">
+                                    <span class="map-marker-abbreviation" data-abbreviation="W">W</span>
+                                </span>
+                                <span class="map-marker ui-js-popover js-map-popover" data-map-area="vs"
+                                    data-area-url="/author/gastro/de/genossenschaften/wallis.html" data-toggle="popover"
+                                    data-setup="{&quot;documentClose&quot;: true, &quot;popoverClasses&quot;: &quot;is-map&quot;}"
+                                    data-trigger="manual" data-placement="top"
+                                    data-content="&lt;h2 class=&quot;title&quot;&gt;Migros Wallis&lt;/h2&gt;&lt;span class=&quot;text&quot;&gt;&lt;span&gt;Hier findest du den Menüplan der Woche, Migros-Take-Away-Angebote, Catering Services und vieles mehr.&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;link-wrapper&quot;&gt;&lt;a target=&quot;_parent&quot; href=&quot;/author/gastro/de/genossenschaften/wallis.html&quot; class=&quot;link&quot;&gt;zur Genossenschaft&lt;/a&gt;&lt;/div&gt;"
+                                    style="top: 68%; left: 33%;" data-original-title="" title="">
+                                    <span class="map-marker-abbreviation" data-abbreviation="W">W</span>
+                                </span>
+                                <span class="map-marker ui-js-popover js-map-popover" data-map-area="zh"
+                                    data-area-url="/author/gastro/de/genossenschaften/zuerich.html"
+                                    data-toggle="popover"
+                                    data-setup="{&quot;documentClose&quot;: true, &quot;popoverClasses&quot;: &quot;is-map&quot;}"
+                                    data-trigger="manual" data-placement="top"
+                                    data-content="&lt;h2 class=&quot;title&quot;&gt;Migros Zürich&lt;/h2&gt;&lt;span class=&quot;text&quot;&gt;&lt;span&gt;Hier findest du den Menüplan der Woche, Migros-Take-Away-Angebote, Catering Services und vieles mehr.&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;link-wrapper&quot;&gt;&lt;a target=&quot;_parent&quot; href=&quot;/author/gastro/de/genossenschaften/zuerich.html&quot; class=&quot;link&quot;&gt;zur Genossenschaft&lt;/a&gt;&lt;/div&gt;"
+                                    style="top: 22%; left: 65%;" data-original-title="" title="">
+                                    <span class="map-marker-abbreviation" data-abbreviation="Z">Z</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <script src="../assets/main.js" type="text/javascript"></script>
+    <script defer="" src="../assets/main.min.js" type="text/javascript"></script>
+    <script>
+        window.ui = window.ui || {};
+    </script>
+</body>
+
+</html>

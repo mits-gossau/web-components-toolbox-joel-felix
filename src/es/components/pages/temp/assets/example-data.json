@@ -1,0 +1,107 @@
+[
+  {
+    "name": "St. Gallen",
+    "zip": "9000",
+    "cooperative": "os"
+  },
+  {
+    "name": "St. Gallen",
+    "zip": "9001",
+    "cooperative": "os"
+  },
+  {
+    "name": "St. Gallen",
+    "zip": "9004",
+    "cooperative": "os"
+  },
+  {
+    "name": "St. Gallen",
+    "zip": "9010",
+    "cooperative": "os"
+  },
+  {
+    "name": "St. Gallen",
+    "zip": "9011",
+    "cooperative": "os"
+  },
+  {
+    "name": "Gossau SG",
+    "zip": "9200",
+    "cooperative": "os"
+  },
+  {
+    "name": "Herisau",
+    "zip": "9100",
+    "cooperative": "os"
+  },
+  {
+    "name": "Abtwil SG",
+    "zip": "9030",
+    "cooperative": "os"
+  },
+  {
+    "name": "Teufen AR",
+    "zip": "9053",
+    "cooperative": "os"
+  },
+  {
+    "name": "Speicher",
+    "zip": "9042",
+    "cooperative": "os"
+  },
+  {
+    "name": "Trogen",
+    "zip": "9043",
+    "cooperative": "os"
+  },
+  {
+    "name": "Heiden",
+    "zip": "9410",
+    "cooperative": "os"
+  },
+  {
+    "name": "Zürich",
+    "zip": "8000",
+    "cooperative": "zh"
+  },
+  {
+    "name": "Bern",
+    "zip": "3000",
+    "cooperative": "be"
+  },
+  {
+    "name": "Lugano",
+    "zip": "6900",
+    "cooperative": "ti"
+  },
+  {
+    "name": "Genf",
+    "zip": "1200",
+    "cooperative": "ge"
+  },
+  {
+    "name": "Basel",
+    "zip": "4000",
+    "cooperative": "bs"
+  },
+  {
+    "name": "Lausanne",
+    "zip": "1000",
+    "cooperative": "vd"
+  },
+  {
+    "name": "Chur",
+    "zip": "7000",
+    "cooperative": "os"
+  },
+  {
+    "name": "Luzern",
+    "zip": "6000",
+    "cooperative": "lu"
+  },
+  {
+    "name": "Winterthur",
+    "zip": "8400",
+    "cooperative": "zh"
+  }
+]

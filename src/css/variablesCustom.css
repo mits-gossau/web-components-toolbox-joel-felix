@@ -1,0 +1,137 @@
+@import url("https://cdn.fonts.net/t/1.css?apiType=css&projectid=88d2abd3-6ae3-4ca7-9423-e8badee73a16");
+
+@font-face {
+  font-family: "HelveticaNowDisplay";
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+  font-display: swap;
+  src: url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowDisplayW05-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: "HelveticaNowDisplay";
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  font-display: swap;
+  src: url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowDisplayMedium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: "HelveticaNowDisplay";
+  font-style: normal;
+  font-weight: 750;
+  font-stretch: normal;
+  font-display: swap;
+  src: url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowDisplayW01-XBdIt.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: "HelveticaNowText";
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  font-display: swap;
+  src: url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowTextW05-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: "HelveticaNowTextText";
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+  font-display: swap;
+  src: url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowTextW05-Bold.woff2') format('woff2');
+}
+
+:root {
+  /* Colors */
+  --color: var(--m-black);
+  --color-secondary: var(--m-orange-600);
+  --color-tertiary: #ff6600;
+  --color-quarternary: #ECEAE6;
+  --color-hover: var(--color-secondary);
+  --color-disabled: #864142;
+  --color-gastro-custom-hover: #E03C00;
+
+  /* Fonts */
+  --font-family: HelveticaNowDisplay, Helvetica, Arial, sans-serif;
+  --p-font-family: HelveticaNowText, Helvetica, Arial, sans-serif;
+  --font-size: min(16px, 5vw);
+  --font-size-mobile: min(15px, 5vw);
+  --p-margin: 0 0 var(--content-spacing, 0) 0;
+  --p-margin-mobile: 0 0 var(--content-spacing-mobile, 0) 0;
+  --h6-font-size: 0.95em;
+
+  /* Content Links */
+  --a-color: var(--color-secondary);
+  --a-color-hover: var(--color-secondary);
+  --a-text-decoration-hover: underline;
+  --a-text-decoration: none;
+  --a-text-underline-offset: 0.2em;
+  --a-transition: 0.5;
+  --underline-after-height: 1px;
+  --underline-color-custom: var(--color);
+  --underline-color-hover-custom: var(--color-hover);
+
+  /* Global */
+  --any-content-width: var(--content-with-global);
+  --background-color: var(--m-white);
+  --bg-color: var(--m-white);
+  --bull-li-before-border-width: 0;
+  --bull-li-before-height: 0.3125em;
+  --bull-li-before-top: 0.625em;
+  --bull-li-before-width: 0.3125em;
+  --bull-li-before-left: -1em;
+  --ul-padding-left: 1em;
+  --content-with-global: 70%;
+  --ol-margin-mobile: 0 0 1em 0.2em;
+
+  /* Header */
+  --header-default-a-logo-top-custom: calc(70px / 2 - 140px / 2);
+  --header-default-logo-width-custom: max(140px, 8vw);
+  --header-default-a-logo-top-mobile-custom: 0;
+  --header-default-a-menu-icon-background-color-custom: var(--color);
+  --header-default-background-color-custom: var(--m-white);
+  --header-default-padding: 1rem 0;
+  --header-default-margin-custom: 0rem 0rem 3rem 0rem;
+  --header-default-content-width: var(--content-with-global);
+  --header-default-border-bottom-custom: 1px solid var(--m-gray-500);
+  --navigation-default-header-default-border-bottom: none;
+  --header-default-align-items-custom: center;
+  --header-default-a-menu-icon-padding-top-custom: 0.7em;
+  --header-default-width: 100%;
+  --header-min-height: unset;
+
+  /* Navigation */
+  --menu-background-color-custom: var(--m-white);
+  --navigation-default-a-link-font-size-custom: 1.125em;
+  --navigation-default-background-color-hover-custom: var(--m-white);
+  --navigation-default-background-color-open-custom: var(--m-white);
+  --navigation-default-color-custom: var(--color);
+  --navigation-default-color-mobile-custom: var(--color);
+  --navigation-default-a-link-font-size-no-scroll-mobile-custom: 1.25em;
+  --navigation-default-font-family-custom: var(--font-family-bold);
+  --navigation-default-justify-content: flex-start;
+  --navigation-default-letter-spacing: -0.0125rem;
+  --navigation-default-not-open-color-active-custom: var(--color-secondary);
+  --navigation-default-not-open-color-hover-custom: var(--color-secondary);
+  --navigation-default-color-hover-custom: var(--color-secondary);
+  --navigation-default-section-background-color-custom: var(--m-white);
+  --navigation-default-color-active-custom: var(--color-secondary);
+  --navigation-default-border-color-active: var(--color-secondary);
+  --navigation-default-background-color-mobile-custom: var(--m-white);
+  --navigation-default-padding-mobile-first-child-custom: 0;
+  --navigation-default-padding-mobile-custom: 0;
+  --navigation-default-a-link-content-spacing-no-scroll-custom: 0;
+  --navigation-default-h2-font-size: 2.75em;
+  --navigation-default-h2-font-family: var(--font-family);
+  --navigation-default-h2-line-height: 1.75em;
+  --navigation-default-border-width: none;
+
+  /* Footer */
+  --footer-default-invert-a-color-hover-custom: var(--color-quarternary);
+  --footer-default-invert-orange-a-color-custom: var(--color-quarternary);
+  --footer-default-invert-orange-a-color-hover-custom: var(--color-quarternary);
+}
