@@ -7,7 +7,7 @@ export default class OpeningHours extends Shadow() {
         this.Data = {
             openingHours: {
                 "Montag": { open: "09:00", close: "17:00" },
-                "Dienstag": { open: "09:00", close: "16:00" },
+                "Dienstag": { open: "09:00", close: "17:00" },
                 "Mittwoch": { open: "09:00", close: "17:00" },
                 "Donnerstag": { open: "09:00", close: "17:00" },
                 "Freitag": { open: "09:00", close: "17:00" },
@@ -46,7 +46,7 @@ export default class OpeningHours extends Shadow() {
         if (!container || !textElement) return;
 
         let statusText = "";
-        let statusColor = "var(--opening-hours-closed-color, #AE1F04)";
+        let statusColor = "var(--m-red-800, #AE1F04)";
         let scheduleInfo = "";
 
         for (let i = 0; i < 7; i++) {
@@ -69,7 +69,7 @@ export default class OpeningHours extends Shadow() {
                     const ClosingSoon = minutesLeft <= 60;
 
                     statusText = ClosingSoon ? "Schliesst" : "Geöffnet";
-                    statusColor = ClosingSoon ? "var(--opening-hours-closing-soon-color, #E5A100)" : "var(--opening-hours-open-color, #408131)";
+                    statusColor = ClosingSoon ? "var(--m-yellow-700, #E5A100)" : "var(--m-green-800, #408131)";
                     scheduleInfo = ClosingSoon ? `in ${minutesLeft} Min.` : `bis ${dayData.close} Uhr`;
                     break;
                 } else if (currentMinutes < openMinutes) {
