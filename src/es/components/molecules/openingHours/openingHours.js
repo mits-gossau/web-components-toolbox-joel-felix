@@ -46,7 +46,7 @@ export default class OpeningHours extends Shadow() {
         if (!container || !textElement) return;
 
         let statusText = "";
-        let statusColor = "var(--m-red-800, #AE1F04)";
+        let statusColor = "var(--m-red-800)";
         let scheduleInfo = "";
 
         for (let i = 0; i < 7; i++) {
@@ -69,7 +69,7 @@ export default class OpeningHours extends Shadow() {
                     const ClosingSoon = minutesLeft <= 60;
 
                     statusText = ClosingSoon ? "Schliesst" : "Geöffnet";
-                    statusColor = ClosingSoon ? "var(--m-yellow-700, #E5A100)" : "var(--m-green-800, #408131)";
+                    statusColor = ClosingSoon ? "var(--m-yellow-700)" : "var(--m-green-800)";
                     scheduleInfo = ClosingSoon ? `in ${minutesLeft} Min.` : `bis ${dayData.close} Uhr`;
                     break;
                 } else if (currentMinutes < openMinutes) {
@@ -109,13 +109,13 @@ export default class OpeningHours extends Shadow() {
     renderCSS() {
         this.css = /* css */`
         :host {
-            font-family: var(--opening-hours-font-family, sans-serif);
+            font-family: var(--opening-hours-font-family);
         }
         
         .openingHoursContainer {
             display: flex;
             align-items: center;
-            gap: var(--opening-hours-gap, 5px); 
+            gap: var(--opening-hours-gap); 
         }
 
          #oeffnungszeiten-link {
@@ -125,7 +125,7 @@ export default class OpeningHours extends Shadow() {
         .status {
             display: flex;
             flex-direction: column;
-            font-weight: var(--opening-hours-status-font-weight, bold);
+            font-weight: var(--opening-hours-status-font-weight);
         }
         `
         return this.fetchTemplate()
