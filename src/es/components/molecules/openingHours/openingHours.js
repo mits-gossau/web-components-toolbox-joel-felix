@@ -50,8 +50,8 @@ export default class OpeningHours extends Shadow() {
         const now = new Date();
         const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-        const container = this.root.getElementById('oeffnungszeiten-link');
-        const textElement = this.root.getElementById('content-link');
+        const container = this.root.getElementById('oeffnungszeiten-link') || this.querySelector('#oeffnungszeiten-link');
+        const textElement = this.root.getElementById('content-link') || this.querySelector('#content-link');
 
         if (!container || !textElement) return;
 
