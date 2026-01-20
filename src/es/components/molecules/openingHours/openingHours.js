@@ -10,8 +10,18 @@ export default class OpeningHours extends Shadow() {
     connectedCallback() {
         if (this.shouldRenderCSS()) this.renderCSS()
 
-        this.updateOpeningHours();
-        this.interval = setInterval(() => this.updateOpeningHours(), 20000);
+        const jsonData = this.getAttribute('data-opening-hours');
+        if (jsonData) {
+            try {
+                this.Data = JSON.parse(jsonData);
+            } catch (error) {
+                console.error("Fehler beim Parsen der JSON-Daten aus 'data-opening-hours' ");
+            }
+        }
+        if (this.Data) {
+            this.updateOpeningHours();
+            this.interval = setInterval(() => this.updateOpeningHours(), 20000); 
+        }
     }
 
     timeToMinutes(timeString) {
