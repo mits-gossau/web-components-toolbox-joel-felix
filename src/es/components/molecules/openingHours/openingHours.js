@@ -4,7 +4,23 @@ export default class OpeningHours extends Shadow() {
     constructor(options = {}, ...args) {
         super({ importMetaUrl: import.meta.url, tabindex: 'no-tabindex', ...options }, ...args)
 
-        this.Data = null
+        this.Data = {
+            openingHours: {
+                "Montag": { open: "09:00", close: "17:00" },
+                "Dienstag": { open: "09:00", close: "17:00" },
+                "Mittwoch": { open: "09:00", close: "17:00" },
+                "Donnerstag": { open: "09:00", close: "17:00" },
+                "Freitag": { open: "09:00", close: "17:00" },
+                "Samstag": { open: "09:00", close: "16:00" },
+                "Sonntag": { open: null, close: null }
+            },
+            specialOpeningHours: {
+                "2026-12-25": { open: null, close: null },
+                "2026-12-26": { open: null, close: null },
+                "2027-01-01": { open: null, close: null }
+            },
+            dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
+        };
     }
 
     connectedCallback() {
@@ -20,7 +36,7 @@ export default class OpeningHours extends Shadow() {
         }
         if (this.Data) {
             this.updateOpeningHours();
-            this.interval = setInterval(() => this.updateOpeningHours(), 20000); 
+            this.interval = setInterval(() => this.updateOpeningHours(), 20000);
         }
     }
 
