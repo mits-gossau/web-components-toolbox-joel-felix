@@ -69,7 +69,7 @@ export default class OpeningHours extends Shadow() {
                     const ClosingSoon = minutesLeft <= 60;
 
                     statusText = ClosingSoon ? "Schliesst" : "Geöffnet";
-                    statusColor = ClosingSoon ? "var(--m-yellow-700)" : "var(--m-green-800)";
+                    statusColor = ClosingSoon ? "var(--m-yellow-800)" : "var(--m-green-800)";
                     scheduleInfo = ClosingSoon ? `in ${minutesLeft} Min.` : `bis ${dayData.close} Uhr`;
                     break;
                 } else if (currentMinutes < openMinutes) {
