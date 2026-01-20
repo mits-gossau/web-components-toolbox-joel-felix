@@ -50,10 +50,13 @@ export default class OpeningHours extends Shadow() {
         const now = new Date();
         const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-        const container = this.root.getElementById('oeffnungszeiten-link') || this.querySelector('#oeffnungszeiten-link');
-        const textElement = this.root.getElementById('content-link') || this.querySelector('#content-link');
+        const container = document.getElementById('oeffnungszeiten-link');
+        const textElement = document.getElementById('content-link');
 
-        if (!container || !textElement) return;
+        if (!container || !textElement) {
+            console.error("Die benötigten HTML-Elemente wurden nicht gefunden!");
+            return;
+        }
 
         let statusText = "";
         let statusColor = "var(--m-red-800)";
