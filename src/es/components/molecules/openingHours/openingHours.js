@@ -22,7 +22,9 @@ export default class OpeningHours extends Shadow() {
             } catch (error) {
                 console.log("JSON Parse Fehler", error)
                 console.error("Fehler beim Prsen des data-config Attributes", error);
-            }
+            } 
+                console.log("Nichts hat funktioniert");
+            
         }
 
         this.updateOpeningHours();
