@@ -3,11 +3,17 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
 export default class OpeningHours extends Shadow() {
     constructor(options = {}, ...args) {
         super({ importMetaUrl: import.meta.url, tabindex: 'no-tabindex', ...options }, ...args)
-        this.Data = {
-            openingHours: {},
-            specialOpeningHours: {},
-            dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
-        };
+
+        try {
+            this.Data = JSON.parse(this.template.content.textContent);
+        } catch (error) {
+            console.warn('Fehler beim Parsen der Daten', error);
+            this.Data = {
+                openingHours: {},
+                specialOpeningHours: {},
+                dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
+            };
+        }
     }
 
     connectedCallback() {
@@ -45,7 +51,7 @@ export default class OpeningHours extends Shadow() {
             }
         }
         const textElement = container ? container.querySelector('#content-link') : null;
-        
+
         if (!container || !textElement) return;
 
         let statusText = "Geschlossen";
