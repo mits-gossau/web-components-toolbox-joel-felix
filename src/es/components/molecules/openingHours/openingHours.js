@@ -3,7 +3,7 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
 export default class OpeningHours extends Shadow() {
     constructor(options = {}, ...args) {
         super({ importMetaUrl: import.meta.url, tabindex: 'no-tabindex', ...options }, ...args)
-
+                console.log("Text")
         this.Data = {
             openingHours: {},
             specialOpeningHours: {},
