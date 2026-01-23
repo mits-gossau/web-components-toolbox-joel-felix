@@ -5,20 +5,8 @@ export default class OpeningHours extends Shadow() {
         super({ importMetaUrl: import.meta.url, tabindex: 'no-tabindex', ...options }, ...args)
 
         this.Data = {
-            openingHours: {
-                "Montag": { open: "09:00", close: "17:00" },
-                "Dienstag": { open: "09:00", close: "17:00" },
-                "Mittwoch": { open: "09:00", close: "17:00" },
-                "Donnerstag": { open: "09:00", close: "17:00" },
-                "Freitag": { open: "09:00", close: "17:00" },
-                "Samstag": { open: "09:00", close: "16:00" },
-                "Sonntag": { open: null, close: null }
-            },
-            specialOpeningHours: {
-                "2026-12-25": { open: null, close: null },
-                "2026-12-26": { open: null, close: null },
-                "2027-01-01": { open: null, close: null }
-            },
+            openingHours: {},
+            specialOpeningHours: {},
             dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
         };
     }
@@ -26,12 +14,12 @@ export default class OpeningHours extends Shadow() {
     connectedCallback() {
         if (this.shouldRenderCSS()) this.renderCSS()
 
-        const jsonData = this.querySelector('#opening-hours-data');
-        if (jsonData) {
+        const config = this.getAttribute('data-config');
+        if (config) {
             try {
-                this.Data = JSON.parse(jsonData.textContent);
+                this.Data = JSON.parse(config);
             } catch (error) {
-                console.error("Fehler beim Parsen der Öffnungszeiten", error);
+                console.error("Fehler beim Prsen des data-config Attributes", error);
             }
         }
 
