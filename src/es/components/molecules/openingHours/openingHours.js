@@ -95,17 +95,13 @@ export default class OpeningHours extends Shadow() {
         }
 
         container.style.color = statusColor;
-        textElement.innerHTML = /* HTML */ `
-        <div class="openingHoursContainer">           
-            <svg xmlns="http://www.w3.org" width="30" height="30" fill="none" viewBox="0 0 32 32" stroke-linejoin="round" stroke-linecap="round">
-                <path stroke="${statusColor}" stroke-width="2.3" d="M16 8v8l5.333 2.667m8-2.667c0 7.364-5.97 13.333-13.333 13.333S2.667 23.363 2.667 16 8.637 2.667 16 2.667 29.333 8.637 29.333 16"></path>
-            </svg>
-            <div class="status">
-                <span class="status-text">${statusText}</span>
-                <span class="schedule-info">${scheduleInfo}</span>
-            </div>
-        </div>
-    `;
+        const template = this.querySelector('template').content.cloneNode(true);
+        template.querySelector('.status-text').textContent = statusText;
+        template.querySelector('.schedule-info').textContent = scheduleInfo;
+        template.querySelector('path').setAttribute('stroke', statusColor);
+
+        this.querySelector('#content-link').appendChild(template);
+
     }
 
     disconnectedCallback() {
