@@ -19,17 +19,22 @@ export default class OpeningHours extends Shadow() {
     connectedCallback() {
         if (this.shouldRenderCSS()) this.renderCSS()
 
-        const config = this.getAttribute('data-config');
-        if (config) {
-            try {
-                this.Data = JSON.parse(config);
-            } catch (error) {
-                console.error("Fehler beim Prsen des data-config Attributes", error);
-            }
-        }
+        this.renderHTML();
 
         this.updateOpeningHours();
         this.interval = setInterval(() => this.updateOpeningHours(), 20000);
+    }
+
+    get template() {
+        return this.root.querySelector('template') || this.querySelector('template');
+    }
+
+    renderHTML() {
+        this.html = /* HTML */ `
+            <a href="#" id="oeffnungszeiten-link">
+                <span id="content-link"></span>
+            </a>
+        `;
     }
 
     timeToMinutes(timeString) {
