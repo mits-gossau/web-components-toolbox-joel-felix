@@ -3,7 +3,7 @@ import { Shadow } from '../../web-components-toolbox/src/es/components/prototype
 export default class OpeningHours extends Shadow() {
     constructor(options = {}, ...args) {
         super({ importMetaUrl: import.meta.url, tabindex: 'no-tabindex', ...options }, ...args)
-        console.log("Nichts hat funktioniert");
+
         this.Data = {
             openingHours: {},
             specialOpeningHours: {},
@@ -18,13 +18,9 @@ export default class OpeningHours extends Shadow() {
         if (config) {
             try {
                 this.Data = JSON.parse(config);
-                console.log("Daten geladen:", this.Data)
             } catch (error) {
-                console.log("JSON Parse Fehler", error)
                 console.error("Fehler beim Prsen des data-config Attributes", error);
             } 
-                
-            
         }
 
         this.updateOpeningHours();
