@@ -45,7 +45,7 @@ export default class OpeningHours extends Shadow() {
     };
 
     updateOpeningHours() {
-         const now = new Date();
+        const now = new Date();
         const currentMinutes = now.getHours() * 60 + now.getMinutes();
         const textElement = this.root.getElementById('content-link');
         const container = this.root.getElementById('oeffnungszeiten-link');
@@ -118,25 +118,26 @@ export default class OpeningHours extends Shadow() {
 
     renderCSS() {
         this.css = /* CSS */`
-    :host {
-        display: block; 
-        font-family: sans-serif;
-    }
-    .openingHoursContainer {
-        display: flex;
-        align-items: center;
-        gap: 10px; 
-    }
-    #oeffnungszeiten-link {
-        text-decoration: none;
-        display: block;
-    }
-    .status {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.2;
-    }
-    `
+        :host {
+            font-family: var(--opening-hours-font-family);
+        }
+        
+        .openingHoursContainer {
+            display: flex;
+            align-items: center;
+            gap: var(--opening-hours-gap); 
+        }
+
+         #oeffnungszeiten-link {
+            text-decoration: none;    
+        }
+
+        .status {
+            display: flex;
+            flex-direction: column;
+            font-weight: var(--opening-hours-status-font-weight);
+        }
+        `
         return this.fetchTemplate()
     }
 
@@ -157,7 +158,7 @@ export default class OpeningHours extends Shadow() {
         }, ...styles])
     }
 
-        get template() {
+    get template() {
         return this.root.querySelector('template') || this.querySelector('template');
     }
 }
