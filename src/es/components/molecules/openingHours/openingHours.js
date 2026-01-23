@@ -44,20 +44,12 @@ export default class OpeningHours extends Shadow() {
     };
 
     updateOpeningHours() {
-        const now = new Date();
+         const now = new Date();
         const currentMinutes = now.getHours() * 60 + now.getMinutes();
-        let container = this.root.getElementById('oeffnungszeiten-link');
+        const textElement = this.root.getElementById('content-link');
+        const container = this.root.getElementById('oeffnungszeiten-link');
 
-        if (!container) {
-            const lightDomLink = this.querySelector('#oeffnungszeiten-link');
-            if (lightDomLink) {
-                this.root.appendChild(lightDomLink);
-                container = lightDomLink;
-            }
-        }
-        const textElement = container ? container.querySelector('#content-link') : null;
-
-        if (!container || !textElement) return;
+        if (!textElement || !container) return;
 
         let statusText = "Geschlossen";
         let statusColor = "var(--m-red-800)";
@@ -108,7 +100,7 @@ export default class OpeningHours extends Shadow() {
                 <path stroke="${statusColor}" stroke-width="2.3" d="M16 8v8l5.333 2.667m8-2.667c0 7.364-5.97 13.333-13.333 13.333S2.667 23.363 2.667 16 8.637 2.667 16 2.667 29.333 8.637 29.333 16"></path>
             </svg>
             <div class="status">
-                <span class="status-text" style="font-weight:bold">${statusText}</span>
+                <span class="status-text">${statusText}</span>
                 <span class="schedule-info">${scheduleInfo}</span>
             </div>
         </div>
