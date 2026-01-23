@@ -26,6 +26,14 @@ export default class OpeningHours extends Shadow() {
     connectedCallback() {
         if (this.shouldRenderCSS()) this.renderCSS()
 
+        if (!this.root.getElementById('oeffnungszeiten-link')) {
+            this.root.innerHTML = /* HTML */ `
+                <a href="${this.getAttribute('href') || '#'}" id="oeffnungszeiten-link">
+                    <span id="content-link"></span>
+                </a>
+            `
+        }
+
         const jsonData = this.getAttribute('data-opening-hours');
         if (jsonData) {
             try {
