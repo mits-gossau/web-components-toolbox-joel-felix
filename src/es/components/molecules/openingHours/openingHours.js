@@ -17,16 +17,17 @@ export default class OpeningHours extends Shadow() {
     }
 
     connectedCallback() {
+        this.hidden = true;
+        const showPromises = [];
         if (this.shouldRenderCSS()) this.renderCSS()
-
         this.renderHTML();
 
-        this.updateOpeningHours();
-        this.interval = setInterval(() => this.updateOpeningHours(), 20000);
-    }
+        Promise.all(showPromises).then(() => {
+            this.hidden = false;
+            this.updateOpeningHours();
+        })
 
-    get template() {
-        return this.root.querySelector('template') || this.querySelector('template');
+        this.interval = setInterval(() => this.updateOpeningHours(), 20000);
     }
 
     renderHTML() {
@@ -154,5 +155,9 @@ export default class OpeningHours extends Shadow() {
             path: `${this.importMetaUrl}./default-/default-.css`,
             namespace: false
         }, ...styles])
+    }
+
+        get template() {
+        return this.root.querySelector('template') || this.querySelector('template');
     }
 }
