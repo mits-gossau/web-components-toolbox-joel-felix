@@ -17,7 +17,7 @@ export default class OpeningHours extends Shadow() {
     }
 
     connectedCallback() {
-        this.hidden = true;
+        this.hidden = false;
         const showPromises = [];
         if (this.shouldRenderCSS()) this.renderCSS()
         this.renderHTML();
