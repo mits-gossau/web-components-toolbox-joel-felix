@@ -19,7 +19,7 @@ export default class OpeningHours extends Shadow() {
                 this.Data = JSON.parse(config);
             } catch (error) {
                 console.error("Fehler beim Prsen des data-config Attributes", error);
-            } 
+            }
         }
 
         this.updateOpeningHours();
@@ -35,22 +35,20 @@ export default class OpeningHours extends Shadow() {
     updateOpeningHours() {
         const now = new Date();
         const currentMinutes = now.getHours() * 60 + now.getMinutes();
-
         let container = this.root.getElementById('oeffnungszeiten-link');
 
         if (!container) {
             const lightDomLink = this.querySelector('#oeffnungszeiten-link');
             if (lightDomLink) {
-                this.html = lightDomLink;
-                container = this.root.getElementById('oeffnungszeiten-link');
+                this.root.appendChild(lightDomLink);
+                container = lightDomLink;
             }
         }
-
-        const textElement = this.root.getElementById('content-link');
-
+        const textElement = container ? container.querySelector('#content-link') : null;
+        
         if (!container || !textElement) return;
 
-        let statusText = "";
+        let statusText = "Geschlossen";
         let statusColor = "var(--m-red-800)";
         let scheduleInfo = "";
 
@@ -59,11 +57,13 @@ export default class OpeningHours extends Shadow() {
             date.setDate(now.getDate() + i);
             const isoDate = date.toISOString().split('T')[0];
             const dayName = this.Data.dayNames[date.getDay()];
-            const dayData = this.Data.specialOpeningHours[isoDate] !== undefined
+            const dayData = (this.Data.specialOpeningHours && this.Data.specialOpeningHours[isoDate])
                 ? this.Data.specialOpeningHours[isoDate]
-                : this.Data.openingHours[dayName];
-
-            if (!dayData || !dayData.open) continue;
+                : (this.Data.openingHours ? this.Data.openingHours[dayName] : null);
+            if (!dayData || !dayData.open || !dayData.close) {
+                if (i === 0) continue;
+                else continue;
+            }
 
             const openMinutes = this.timeToMinutes(dayData.open);
             const closeMinutes = this.timeToMinutes(dayData.close);
@@ -72,35 +72,36 @@ export default class OpeningHours extends Shadow() {
                 if (currentMinutes >= openMinutes && currentMinutes < closeMinutes) {
                     const minutesLeft = closeMinutes - currentMinutes;
                     const ClosingSoon = minutesLeft <= 60;
-
                     statusText = ClosingSoon ? "Schliesst" : "Geöffnet";
                     statusColor = ClosingSoon ? "var(--m-yellow-800)" : "var(--m-green-800)";
                     scheduleInfo = ClosingSoon ? `in ${minutesLeft} Min.` : `bis ${dayData.close} Uhr`;
                     break;
                 } else if (currentMinutes < openMinutes) {
                     statusText = "Geschlossen";
+                    statusColor = "var(--m-red-800)";
                     scheduleInfo = `öffnet um ${dayData.open} Uhr`;
                     break;
                 }
             } else {
                 statusText = "Geschlossen";
-                scheduleInfo = `öffnet ${dayName} um ${dayData.open} Uhr`;
+                statusColor = "var(--m-red-800)";
+                scheduleInfo = `öffnet ${i === 1 ? 'morgen' : dayName} um ${dayData.open} Uhr`;
                 break;
             }
         }
 
         container.style.color = statusColor;
         textElement.innerHTML = /* HTML */ `
-                <div class="openingHoursContainer">           
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 32 32" stroke-linejoin="round" stroke-linecap="round">
-                        <path stroke="${statusColor}" stroke-width="2.3" d="M16 8v8l5.333 2.667m8-2.667c0 7.364-5.97 13.333-13.333 13.333S2.667 23.363 2.667 16 8.637 2.667 16 2.667 29.333 8.637 29.333 16"></path>
-                    </svg>
-                    <div class="status">
-                        <span class="status-text" style="font-weight:bold">${statusText}</span>
-                        <span class="schedule-info">${scheduleInfo}</span>
-                    </div>
-                </div>
-        `;
+        <div class="openingHoursContainer">           
+            <svg xmlns="http://www.w3.org" width="30" height="30" fill="none" viewBox="0 0 32 32" stroke-linejoin="round" stroke-linecap="round">
+                <path stroke="${statusColor}" stroke-width="2.3" d="M16 8v8l5.333 2.667m8-2.667c0 7.364-5.97 13.333-13.333 13.333S2.667 23.363 2.667 16 8.637 2.667 16 2.667 29.333 8.637 29.333 16"></path>
+            </svg>
+            <div class="status">
+                <span class="status-text" style="font-weight:bold">${statusText}</span>
+                <span class="schedule-info">${scheduleInfo}</span>
+            </div>
+        </div>
+    `;
     }
 
     disconnectedCallback() {
