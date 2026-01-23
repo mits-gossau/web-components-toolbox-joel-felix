@@ -37,8 +37,17 @@ export default class OpeningHours extends Shadow() {
         const now = new Date();
         const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-        const container = this.root.getElementById('oeffnungszeiten-link') || this.querySelector('#oeffnungszeiten-link');
-        const textElement = this.root.getElementById('content-link') || this.querySelector('#content-link');
+        let container = this.root.getElementById('oeffnungszeiten-link');
+
+        if (!container) {
+            const lightDomLink = this.querySelector('#oeffnungszeiten-link');
+            if (lightDomLink) {
+                this.html = lightDomLink;
+                container = this.root.getElementById('oeffnungszeiten-link');
+            }
+        }
+
+        const textElement = this.root.getElementById('content-link');
 
         if (!container || !textElement) return;
 
@@ -88,7 +97,7 @@ export default class OpeningHours extends Shadow() {
                         <path stroke="${statusColor}" stroke-width="2.3" d="M16 8v8l5.333 2.667m8-2.667c0 7.364-5.97 13.333-13.333 13.333S2.667 23.363 2.667 16 8.637 2.667 16 2.667 29.333 8.637 29.333 16"></path>
                     </svg>
                     <div class="status">
-                        <span class="status-text">${statusText}</span>
+                        <span class="status-text" style="font-weight:bold">${statusText}</span>
                         <span class="schedule-info">${scheduleInfo}</span>
                     </div>
                 </div>
@@ -104,27 +113,26 @@ export default class OpeningHours extends Shadow() {
     }
 
     renderCSS() {
-        this.css = /* css */`
-        :host {
-            font-family: var(--opening-hours-font-family);
-        }
-        
-        .openingHoursContainer {
-            display: flex;
-            align-items: center;
-            gap: var(--opening-hours-gap); 
-        }
-
-         #oeffnungszeiten-link {
-            text-decoration: none;    
-        }
-
-        .status {
-            display: flex;
-            flex-direction: column;
-            font-weight: var(--opening-hours-status-font-weight);
-        }
-        `
+        this.css = /* CSS */`
+    :host {
+        display: block; 
+        font-family: sans-serif;
+    }
+    .openingHoursContainer {
+        display: flex;
+        align-items: center;
+        gap: 10px; 
+    }
+    #oeffnungszeiten-link {
+        text-decoration: none;
+        display: block;
+    }
+    .status {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+    }
+    `
         return this.fetchTemplate()
     }
 
