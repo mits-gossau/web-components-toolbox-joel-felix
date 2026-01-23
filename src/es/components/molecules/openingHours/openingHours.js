@@ -26,28 +26,6 @@ export default class OpeningHours extends Shadow() {
     connectedCallback() {
         if (this.shouldRenderCSS()) this.renderCSS()
 
-        const url = this.getAttribute('href') || '#';
-        if (!this.root.getElementById('oeffnungszeiten-link')) {
-            this.root.innerHTML = /* HTML */ `
-                 <a href="${url}" id="oeffnungszeiten-link">
-                <span id="content-link"></span>
-            </a>
-            `;
-        }
-
-        const jsonData = this.getAttribute('data-opening-hours');
-        if (jsonData) {
-            try {
-                const parsedData = JSON.parse(jsonData);
-                this.Data = {
-                    ...this.Data,
-                    openingHours: parsedData.openingHours || this.Data.openingHours,
-                    specialOpeningHours: parsedData.specialOpeningHours || this.Data.specialOpeningHours
-                };
-            } catch (error) {
-                console.error("Fehler beim Laden der Öffnungszeiten:", error);
-            }
-        }
         this.updateOpeningHours();
         this.interval = setInterval(() => this.updateOpeningHours(), 20000);
     }
