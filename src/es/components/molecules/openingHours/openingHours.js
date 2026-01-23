@@ -26,6 +26,15 @@ export default class OpeningHours extends Shadow() {
     connectedCallback() {
         if (this.shouldRenderCSS()) this.renderCSS()
 
+        const jsonData = this.querySelector('#opening-hours-data');
+        if (jsonData) {
+            try {
+                this.Data = JSON.parse(jsonData.textContent);
+            } catch (error) {
+                console.error("Fehler beim Parsen der Öffnungszeiten", error);
+            }
+        }
+
         this.updateOpeningHours();
         this.interval = setInterval(() => this.updateOpeningHours(), 20000);
     }
