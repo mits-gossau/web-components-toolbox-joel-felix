@@ -125,7 +125,7 @@ export default class OpeningHours extends Shadow() {
         .status {
             display: flex;
             flex-direction: column;
-            font-weight: var(--opening-hours-status-font-weight);
+            font-weight: var(--opening-hours-font-weight);
         }
         `
         return this.fetchTemplate()

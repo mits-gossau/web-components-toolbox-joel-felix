@@ -7,5 +7,5 @@
 }
 
 .status {
-    font-weight: var(--opening-hours-status-font-weight, bold);
+    font-weight: var(--opening-hours-font-weight, bold);
 }
