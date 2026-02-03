@@ -1,21 +1,31 @@
-
-
 import { Shadow } from '../../web-components-toolbox/src/es/components/prototypes/Shadow.js'
 
 export default class OpeningHours extends Shadow() {
     constructor(options = {}, ...args) {
         super({ importMetaUrl: import.meta.url, tabindex: 'no-tabindex', ...options }, ...args)
 
-        const config = this.getAttribute('data-config');
-        this.Data = config ? JSON.parse(config) : { openingHours: {}, specialOpeningHours: {}, dayNames: [] };
+        this.Data = {
+            openingHours: {
+                "Montag": { open: "09:00", close: "17:00" },
+                "Dienstag": { open: "09:00", close: "16:00" },
+                "Mittwoch": { open: "09:00", close: "17:00" },
+                "Donnerstag": { open: "09:00", close: "17:00" },
+                "Freitag": { open: "09:00", close: "17:00" },
+                "Samstag": { open: "09:00", close: "16:00" },
+                "Sonntag": { open: null, close: null }
+            },
+            specialOpeningHours: {
+                "2026-12-25": { open: null, close: null },
+                "2026-12-26": { open: null, close: null },
+                "2027-01-01": { open: null, close: null }
+            },
+            dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
+        };
     }
 
     connectedCallback() {
-        if (this.shouldRenderCSS()) this.renderCSS();
-
-        if (this.root.children.length <= 1) {
-            this.html = /* HTML */ `<slot></slot>`;
-        }
+        if (this.shouldRenderCSS()) this.renderCSS()
+        this.renderHTML()
 
         this.updateOpeningHours();
         this.interval = setInterval(() => this.updateOpeningHours(), 20000);
@@ -25,18 +35,18 @@ export default class OpeningHours extends Shadow() {
         if (!timeString) return null;
         const [hour, minute] = timeString.split(':').map(Number);
         return hour * 60 + minute;
-    }
+    };
 
     updateOpeningHours() {
         const now = new Date();
         const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-        const container = this.querySelector('#oeffnungszeiten-link');
-        const textElement = this.querySelector('#content-link');
+        const container = this.root.getElementById('oeffnungszeiten-link');
+        const textElement = this.root.getElementById('content-link');
 
         if (!container || !textElement) return;
 
-        let statusText = "Geschlossen";
+        let statusText = "";
         let statusColor = "var(--m-red-800)";
         let scheduleInfo = "";
 
@@ -45,7 +55,6 @@ export default class OpeningHours extends Shadow() {
             date.setDate(now.getDate() + i);
             const isoDate = date.toISOString().split('T')[0];
             const dayName = this.Data.dayNames[date.getDay()];
-
             const dayData = this.Data.specialOpeningHours[isoDate] !== undefined
                 ? this.Data.specialOpeningHours[isoDate]
                 : this.Data.openingHours[dayName];
@@ -65,10 +74,12 @@ export default class OpeningHours extends Shadow() {
                     scheduleInfo = ClosingSoon ? `in ${minutesLeft} Min.` : `bis ${dayData.close} Uhr`;
                     break;
                 } else if (currentMinutes < openMinutes) {
+                    statusText = "Geschlossen";
                     scheduleInfo = `öffnet um ${dayData.open} Uhr`;
                     break;
                 }
             } else {
+                statusText = "Geschlossen";
                 scheduleInfo = `öffnet ${dayName} um ${dayData.open} Uhr`;
                 break;
             }
@@ -77,7 +88,7 @@ export default class OpeningHours extends Shadow() {
         container.style.color = statusColor;
         textElement.innerHTML = /* HTML */ `
                 <div class="openingHoursContainer">           
-                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 32 32" stroke-linejoin="round" stroke-linecap="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 32 32" stroke-linejoin="round" stroke-linecap="round">
                         <path stroke="${statusColor}" stroke-width="2.3" d="M16 8v8l5.333 2.667m8-2.667c0 7.364-5.97 13.333-13.333 13.333S2.667 23.363 2.667 16 8.637 2.667 16 2.667 29.333 8.637 29.333 16"></path>
                     </svg>
                     <div class="status">
@@ -98,7 +109,7 @@ export default class OpeningHours extends Shadow() {
 
     renderCSS() {
         this.css = /* css */`
-          :host {
+        :host {
             font-family: var(--opening-hours-font-family);
         }
         
@@ -119,6 +130,14 @@ export default class OpeningHours extends Shadow() {
         }
         `
         return this.fetchTemplate()
+    }
+
+    renderHTML() {
+        this.html = /* HTML */ `
+            <a href="#" id="oeffnungszeiten-link">
+                <span id="content-link"></span>
+            </a>
+        `
     }
 
     fetchTemplate() {
