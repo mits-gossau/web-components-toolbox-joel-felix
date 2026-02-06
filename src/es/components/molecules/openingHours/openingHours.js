@@ -34,7 +34,7 @@ export default class OpeningHours extends Shadow() {
             dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
         };
 
-          try {
+        try {
             const template = this.querySelector('template');
             if (template) {
                 const config = JSON.parse(template.innerHTML);
@@ -196,4 +196,8 @@ export default class OpeningHours extends Shadow() {
             namespace: false
         }, ...styles])
     }
+}
+
+if (typeof customElements !== 'undefined' && !customElements.get('gastro-m-openinghours')) {
+    customElements.define('gastro-m-openinghours', OpeningHours);
 }
