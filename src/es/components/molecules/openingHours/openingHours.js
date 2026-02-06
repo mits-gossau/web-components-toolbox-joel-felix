@@ -5,27 +5,32 @@ export default class OpeningHours extends Shadow() {
         super({ importMetaUrl: import.meta.url, tabindex: 'no-tabindex', ...options }, ...args)
 
         this.Data = {
-            openingHours: {
-                "Montag": { open: "09:00", close: "17:00" },
-                "Dienstag": { open: "09:00", close: "16:00" },
-                "Mittwoch": { open: "09:00", close: "17:00" },
-                "Donnerstag": { open: "09:00", close: "17:00" },
-                "Freitag": { open: "09:00", close: "17:00" },
-                "Samstag": { open: "09:00", close: "16:00" },
-                "Sonntag": { open: null, close: null }
-            },
-            specialOpeningHours: {
-                "2026-12-25": { open: null, close: null },
-                "2026-12-26": { open: null, close: null },
-                "2027-01-01": { open: null, close: null }
-            },
+            openingHours: {},
+            specialOpeningHours: {},
             dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
         };
+
+        try {
+            const template = this.querySelector('template');
+            if (template) {
+                const config = JSON.parse(template.innerHTML);
+                this.Data = Object.assign(this.Data, config);
+            }
+        } catch (error) {
+            console.warn("JSON Parse fehlgeschlagen", error);
+        }
     }
 
     connectedCallback() {
         if (this.shouldRenderCSS()) this.renderCSS()
         this.renderHTML()
+
+        const sourceLink = this.querySelector('#oeffnungszeiten-link-source');
+        const targetLink = this.root.getElementById('oeffnungszeiten-link');
+        if (sourceLink && targetLink) {
+            targetLink.href = sourceLink.href;
+            targetLink.target = sourceLink.target;
+        }
 
         this.updateOpeningHours();
         this.interval = setInterval(() => this.updateOpeningHours(), 20000);
@@ -135,7 +140,7 @@ export default class OpeningHours extends Shadow() {
     renderHTML() {
         this.html = /* HTML */ `
             <a href="#" id="oeffnungszeiten-link">
-                <span id="content-link"></span>
+                <span id="content-link">Öffnungszeiten...</span>
             </a>
         `
     }
