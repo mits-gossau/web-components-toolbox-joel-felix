@@ -19,7 +19,15 @@ export default class OpeningHours extends Shadow() {
         this.Data = {
             link: "",
             linkTarget: "",
-            openingHours: {},
+            openingHours: {
+                "Montag": { open: "09:00", close: "17:00" },
+                "Dienstag": { open: "09:00", close: "16:00" },
+                "Mittwoch": { open: "09:00", close: "17:00" },
+                "Donnerstag": { open: "09:00", close: "17:00" },
+                "Freitag": { open: "09:00", close: "17:00" },
+                "Samstag": { open: "09:00", close: "16:00" },
+                "Sonntag": { open: null, close: null }
+            },
             specialOpeningHours: {
                 "2027-01-01": { open: null, close: null }
             },
