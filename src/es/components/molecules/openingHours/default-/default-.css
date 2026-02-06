@@ -2,8 +2,8 @@
      font-family: var(--opening-hours-font-family, sans-serif);
 }
 
-.openingHoursContainer {
-    gap: var(--opening-hours-gap, 5px);
+#oeffnungszeiten-link {
+    gap: var(--opening-hours-gap, 3px);
 }
 
 .status {
