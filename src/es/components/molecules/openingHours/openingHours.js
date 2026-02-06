@@ -21,6 +21,16 @@ export default class OpeningHours extends Shadow() {
             },
             dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
         };
+
+          try {
+            const template = this.querySelector('template');
+            if (template) {
+                const config = JSON.parse(template.innerHTML);
+                this.Data = Object.assign(this.Data, config);
+            }
+        } catch (error) {
+            console.warn("JSON Parse fehlgeschlagen", error);
+        }
     }
 
     set data(value) {
@@ -60,6 +70,7 @@ export default class OpeningHours extends Shadow() {
 
         if (this.Data.link) {
             container.href = this.Data.link;
+            if (this.Data.linkTarget) container.target = this.Data.linkTarget;
         }
 
         let statusText = "";
