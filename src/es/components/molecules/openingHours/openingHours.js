@@ -1,6 +1,18 @@
+// @ts-check
 import { Shadow } from '../../web-components-toolbox/src/es/components/prototypes/Shadow.js'
 
+/**
+ * @export
+ * @class openingHours
+ * @type {CustomElementConstructor}
+ */
+
 export default class OpeningHours extends Shadow() {
+    /**
+     * 
+     * @param {*} options 
+     * @param  {...any} args 
+     */
     constructor(options = {}, ...args) {
         super({ importMetaUrl: import.meta.url, tabindex: 'no-tabindex', ...options }, ...args)
 
@@ -32,7 +44,9 @@ export default class OpeningHours extends Shadow() {
             console.warn("JSON Parse fehlgeschlagen", error);
         }
     }
-
+    /**
+     * @param {any} value
+     */
     set data(value) {
         this.Data = Object.assign(this.Data, value);
         this.updateOpeningHours();
@@ -50,7 +64,11 @@ export default class OpeningHours extends Shadow() {
         this.updateOpeningHours();
         this.interval = setInterval(() => this.updateOpeningHours(), 20000);
     }
-
+    /**
+     * 
+     * @param {*} timeString 
+     * @returns 
+     */
     timeToMinutes(timeString) {
         if (!timeString) return null;
         const [hour, minute] = timeString.split(':').map(Number);
