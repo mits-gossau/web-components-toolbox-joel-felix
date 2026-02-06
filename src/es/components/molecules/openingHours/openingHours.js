@@ -53,16 +53,26 @@ export default class OpeningHours extends Shadow() {
     }
 
     connectedCallback() {
-        if (this.shouldRenderCSS()) this.renderCSS()
-        this.renderHTML()
+          if (this.shouldRenderCSS()) this.renderCSS();
+    this.renderHTML();
 
-        const sourceLink = this.querySelector('#oeffnungszeiten-link-source');
-        if (sourceLink) {
-            this.Data.link = sourceLink.href;
+    const template = this.querySelector('template');
+    if (template) {
+        try {
+            const config = JSON.parse(template.innerHTML);
+            this.Data = Object.assign({}, this.Data, config);
+        } catch (error) {
+            console.warn("Fehler beim Parsen des Templates", error);
         }
+    }
 
-        this.updateOpeningHours();
-        this.interval = setInterval(() => this.updateOpeningHours(), 20000);
+    const sourceLink = this.querySelector('#oeffnungszeiten-link-source');
+    if (sourceLink) {
+        this.Data.link = sourceLink.href;
+    }
+
+    this.updateOpeningHours();
+    this.interval = setInterval(() => this.updateOpeningHours(), 20000);
     }
     /**
      * 
