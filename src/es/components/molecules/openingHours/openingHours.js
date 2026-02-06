@@ -5,20 +5,27 @@ export default class OpeningHours extends Shadow() {
         super({ importMetaUrl: import.meta.url, tabindex: 'no-tabindex', ...options }, ...args)
 
         this.Data = {
-            openingHours: {},
-            specialOpeningHours: {},
+            openingHours: {
+                "Montag": { open: "09:00", close: "17:00" },
+                "Dienstag": { open: "09:00", close: "16:00" },
+                "Mittwoch": { open: "09:00", close: "17:00" },
+                "Donnerstag": { open: "09:00", close: "17:00" },
+                "Freitag": { open: "09:00", close: "17:00" },
+                "Samstag": { open: "09:00", close: "16:00" },
+                "Sonntag": { open: null, close: null }
+            },
+            specialOpeningHours: {
+                "2026-12-25": { open: null, close: null },
+                "2026-12-26": { open: null, close: null },
+                "2027-01-01": { open: null, close: null }
+            },
             dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
         };
+    }
 
-        try {
-            const template = this.querySelector('template');
-            if (template) {
-                const config = JSON.parse(template.innerHTML);
-                this.Data = Object.assign(this.Data, config);
-            }
-        } catch (error) {
-            console.warn("JSON Parse fehlgeschlagen", error);
-        }
+    set data(value) {
+        this.Data = Object.assign(this.Data, value);
+        this.updateOpeningHours();
     }
 
     connectedCallback() {
@@ -26,10 +33,8 @@ export default class OpeningHours extends Shadow() {
         this.renderHTML()
 
         const sourceLink = this.querySelector('#oeffnungszeiten-link-source');
-        const targetLink = this.root.getElementById('oeffnungszeiten-link');
-        if (sourceLink && targetLink) {
-            targetLink.href = sourceLink.href;
-            targetLink.target = sourceLink.target;
+        if (sourceLink) {
+            this.Data.link = sourceLink.href;
         }
 
         this.updateOpeningHours();
@@ -46,10 +51,16 @@ export default class OpeningHours extends Shadow() {
         const now = new Date();
         const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
+        const statusTextElement = this.root.getElementById('status-text');
+        const scheduleInfoElement = this.root.getElementById('schedule-info');
+        const svgElement = this.root.getElementById('status-icon');
         const container = this.root.getElementById('oeffnungszeiten-link');
-        const textElement = this.root.getElementById('content-link');
 
-        if (!container || !textElement) return;
+        if (!statusTextElement || !scheduleInfoElement) return;
+
+        if (this.Data.link) {
+            container.href = this.Data.link;
+        }
 
         let statusText = "";
         let statusColor = "var(--m-red-800)";
@@ -89,19 +100,13 @@ export default class OpeningHours extends Shadow() {
                 break;
             }
         }
-
+        statusTextElement.textContent = statusText;
+        scheduleInfoElement.textContent = scheduleInfo;
         container.style.color = statusColor;
-        textElement.innerHTML = /* HTML */ `
-                <div class="openingHoursContainer">           
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 32 32" stroke-linejoin="round" stroke-linecap="round">
-                        <path stroke="${statusColor}" stroke-width="2.3" d="M16 8v8l5.333 2.667m8-2.667c0 7.364-5.97 13.333-13.333 13.333S2.667 23.363 2.667 16 8.637 2.667 16 2.667 29.333 8.637 29.333 16"></path>
-                    </svg>
-                    <div class="status">
-                        <span class="status-text">${statusText}</span>
-                        <span class="schedule-info">${scheduleInfo}</span>
-                    </div>
-                </div>
-        `;
+        svgElement.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 32 32" stroke-linejoin="round" stroke-linecap="round">
+            <path stroke="${statusColor}" stroke-width="2.3" d="M16 8v8l5.333 2.667m8-2.667c0 7.364-5.97 13.333-13.333 13.333S2.667 23.363 2.667 16 8.637 2.667 16 2.667 29.333 8.637 29.333 16"></path>
+        </svg>`;
     }
 
     disconnectedCallback() {
@@ -118,14 +123,11 @@ export default class OpeningHours extends Shadow() {
             font-family: var(--opening-hours-font-family);
         }
         
-        .openingHoursContainer {
+        #oeffnungszeiten-link {
             display: flex;
             align-items: center;
-            gap: var(--opening-hours-gap); 
-        }
-
-         #oeffnungszeiten-link {
-            text-decoration: none;    
+            gap: var(--opening-hours-gap);
+            text-decoration: none;
         }
 
         .status {
@@ -139,10 +141,14 @@ export default class OpeningHours extends Shadow() {
 
     renderHTML() {
         this.html = /* HTML */ `
-            <a href="#" id="oeffnungszeiten-link">
-                <span id="content-link">Öffnungszeiten...</span>
-            </a>
-        `
+        <a id="oeffnungszeiten-link">
+            <div id="status-icon"></div>
+            <div class="status">
+                <span id="status-text"></span>
+                <span id="schedule-info"></span>
+            </div>
+        </a>
+    `
     }
 
     fetchTemplate() {
