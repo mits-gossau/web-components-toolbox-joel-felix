@@ -198,6 +198,6 @@ export default class OpeningHours extends Shadow() {
     }
 }
 
-if (typeof customElements !== 'undefined' && !customElements.get('gastro-m-openinghours')) {
-    customElements.define('gastro-m-openinghours', OpeningHours);
+if (typeof customElements !== 'undefined' && !customElements.get('gastro-m-openingHours')) {
+    customElements.define('gastro-m-openingHours', OpeningHours);
 }
