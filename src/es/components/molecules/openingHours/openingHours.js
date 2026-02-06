@@ -17,6 +17,8 @@ export default class OpeningHours extends Shadow() {
         super({ importMetaUrl: import.meta.url, tabindex: 'no-tabindex', ...options }, ...args)
 
         this.Data = {
+            link: "",
+            linkTarget: "",
             openingHours: {
                 "Montag": { open: "09:00", close: "17:00" },
                 "Dienstag": { open: "09:00", close: "16:00" },
@@ -27,13 +29,13 @@ export default class OpeningHours extends Shadow() {
                 "Sonntag": { open: null, close: null }
             },
             specialOpeningHours: {
-                "2026-12-25": { open: null, close: null },
-                "2026-12-26": { open: null, close: null },
                 "2027-01-01": { open: null, close: null }
             },
             dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
         };
+    }
 
+    connectedCallback() {
         try {
             const template = this.querySelector('template');
             if (template) {
@@ -43,16 +45,7 @@ export default class OpeningHours extends Shadow() {
         } catch (error) {
             console.warn("JSON Parse fehlgeschlagen", error);
         }
-    }
-    /**
-     * @param {any} value
-     */
-    set data(value) {
-        this.Data = Object.assign(this.Data, value);
-        this.updateOpeningHours();
-    }
 
-    connectedCallback() {
         if (this.shouldRenderCSS()) this.renderCSS()
         this.renderHTML()
 
